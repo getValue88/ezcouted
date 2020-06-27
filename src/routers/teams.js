@@ -5,11 +5,6 @@ const { db } = require('../models/Team');
 
 //INSERT TEAMS BY TIER
 router.post('/teams/:tier', (req, res) => {
-
-    if (req.user.role !== 'Admin') {
-        return res.status(401).send();
-    }
-
     const tier = req.params.tier.toLowerCase();
     if (tier !== 'ou' && tier !== 'uu' && tier !== 'nu' && tier !== 'db' && tier !== 'lc') {
         return res.status(400).send('Wrong Tier');
