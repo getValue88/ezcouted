@@ -46,7 +46,7 @@ const renderPokemonStats = data => {
 const renderPlayerStat = (data, tier) => {
     if (data) {
         data.sort((a, b) => {
-            return parseInt(a.gamesPlayed) < parseInt(b.gamesPlayed);
+            return parseInt(a.gamesPlayed) < parseInt(b.gamesPlayed) ? 1 : -1;
         });
 
         $main.innerHTML = `
