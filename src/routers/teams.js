@@ -13,14 +13,14 @@ router.post('/teams/:tier', (req, res) => {
     const rawData = req.body.data.split('-').map(row => row.split(','));
     const teams = rawData.map(team => {
         return new Team({
-            player: team[0],
-            result: team[1],
-            p1: team[2],
-            p2: team[3],
-            p3: team[4],
-            p4: team[5],
-            p5: team[6],
-            p6: team[7],
+            player: team[0].toLowerCase(),
+            result: team[1].toLowerCase(),
+            p1: team[2].toLowerCase(),
+            p2: team[3].toLowerCase(),
+            p3: team[4].toLowerCase(),
+            p4: team[5].toLowerCase(),
+            p5: team[6].toLowerCase(),
+            p6: team[7].toLowerCase(),
             date: team[8]
         });
     });
