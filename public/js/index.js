@@ -5,8 +5,8 @@ const $main = document.querySelector('.main-content');
 //FUNCTIONS
 const renderPokemonStats = data => {
     if (data) {
-        data = data.sort((a, b) => {
-            return parseInt(a.usage) < parseInt(b.usage);
+        data.sort((a, b) => {
+            return parseInt(a['usage']) < parseInt(b['usage']);
         });
 
         $main.innerHTML = `
