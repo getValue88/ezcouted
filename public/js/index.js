@@ -117,7 +117,7 @@ const renderPlayerInfo = (data, tier) => {
                 dateArrB[0] = '01';
             }
 
-            return new Date(dateArrA[2], dateArrA[1] - 1, dateArrA[0]) < new Date(dateArrB[2], dateArrB[1] - 1, dateArrB[0] ? 1 : -1);
+            return (new Date(dateArrA[2], dateArrA[1], dateArrA[0]) < new Date(dateArrB[2], dateArrB[1], dateArrB[0]) ? 1 : -1);
         });
 
         $main.innerHTML = `
