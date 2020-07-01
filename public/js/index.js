@@ -101,9 +101,23 @@ const renderPlayerInfo = (data, tier) => {
 
         //sort by date
         data.sort((a, b) => {
-            const dateArrA = a.date.split('/');
-            const dateArrB = b.date.split('/');
-            return new Date('20' + dateArrA[1], dateArrA[0] - 1, 01) < new Date('20' + dateArrB[1], dateArrB[0] - 1, 01);
+            console.log(a.date, b.date)
+            const dateArrA = a.date.split('_');
+            const dateArrB = b.date.split('_');
+
+            if (dateArrA.length < 3) {
+                dateArrA[2] = dateArrA[1];
+                dateArrA[1] = dateArrA[0];
+                dateArrA[0] = '01';
+            }
+
+            if (dateArrB.length < 3) {
+                dateArrB[2] = dateArrB[1];
+                dateArrB[1] = dateArrB[0];
+                dateArrB[0] = '01';
+            }
+
+            return new Date(dateArrA[2], dateArrA[1] - 1, dateArrA[0]) < new Date(dateArrB[2], dateArrB[1] - 1, dateArrB[0] ? 1 : -1);
         });
 
         $main.innerHTML = `
@@ -123,9 +137,16 @@ const renderPlayerInfo = (data, tier) => {
         `;
 
         data.forEach(el => {
+            const dateArr = el.date.split('_');
+            if (dateArr.length < 3) {
+                dateArr[2] = dateArr[1];
+                dateArr[1] = dateArr[0];
+                dateArr[0] = '01';
+            }
+
             const markup = `               
                 <tr class="item">                    
-                    <td class="date">${el.date.replace('_', '/')}</td>                   
+                    <td class="date">${dateArr.join('/')}</td>                   
                     <td class="party">${el.p1.charAt(0).toUpperCase() + el.p1.slice(1)}</td>
                     <td class="party">${el.p2.charAt(0).toUpperCase() + el.p2.slice(1)}</td>
                     <td class="party">${el.p3.charAt(0).toUpperCase() + el.p3.slice(1)}</td>
